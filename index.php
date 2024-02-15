@@ -1,7 +1,7 @@
 <?php
 include_once 'upload.php';
 
-$pdo = new PDO('mysql:host=localhost;dbname=formulaire', 'root', '4sgardLOCI');
+$pdo = new PDO('mysql:host=localhost;dbname=formulaire', 'root', '');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérifier si tous les champs 
