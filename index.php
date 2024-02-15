@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <?php
 include_once 'upload.php';
 
@@ -66,18 +69,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 
-<!DOCTYPE html>
-<html>
 <head>
     <meta charset="utf-8">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body class="bg-white">
+
+<?php
+require_once 'autoload.php';
+if(isset($_POST['captcha'])){
+    $recaptcha = new \ReCaptcha\ReCaptcha('6Lezy3MpAAAAAHmTlPLweZbrJHTWSgPqdUH1ni5G');
+    $gRecaptchaResponse = $_POST['g-recaptcha-response'];
+    $resp = $recaptcha->setExpectedHostname('localhost')
+                  ->verify($gRecaptchaResponse, $remoteIp);
+    if ($resp->isSuccess()) {
+        echo "Success !";
+    } else {
+        $errors = $resp->getErrorCodes();
+        var_dump($errors);
+    }
+}
+
+?>
+
     <div class="container mx-auto p-8 max-w-screen-md bg-gray-100 rounded-3xl shadow-md mt-9 border-solid border-2 border-sky-500">
         <h2 class="font-serif text-5xl font-bold mb-4 text-center text-gray-800 ">Formulaire</h2>
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form name="formulaire" action="" method="post" enctype="multipart/form-data">
     <div class=" flex flex-row space-x-16 ">
             <div id="divNom" class="mb-4">
                 <label for="nom" class=" font-serif italic block text-lg font-medium  text-gray-800" >Nom:</label>
@@ -103,11 +122,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="description" class="font-serif italic block text-lg font-medium text-gray-800">Ma description:</label>
                 <textarea name="description" id="description" class="shadow-md w-full rounded border border-gray-300 p-2" required minlength="2" maxlength="1000"></textarea>
             </div>
+            <div class="g-recaptcha" data-sitekey="6Lezy3MpAAAAAD5tPqfalKNkK_yj_TnsLXAA00ga"></div>
            <div class="flex justify-center">
-            <button id="submitButton" type="submit" name="button" class=" font-serif w-40 bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-500 ">Soumettre</button>
+            <button id="submitButton" type="submit" name="button captcha" class="g-recaptcha font-serif w-40 bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-500 ">Soumettre</button>
 </div>
         </form>
 </div>
+
+<script>
+    window.addEventListener('load', () => {
+  const $recaptcha = document.querySelector('#g-recaptcha-response');
+  if ($recaptcha) {
+    $recaptcha.setAttribute('required', 'required');
+  }
+})
+</script>
 
 <script type="module" src="/hackers-poulette/validation.js" defer></script>
 
