@@ -1,8 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Inscription</title>
+    <!--
+        <link rel="stylesheet" href="css/basics.css" media="screen" title="no title" charset="utf-8">
+    -->
+    
+</head>
+
 <?php
 include_once 'upload.php';
 ?>
 <?php
-$pdo = new PDO('mysql:host=localhost;dbname=formulaire', 'root', '');
+$pdo = new PDO('mysql:host=localhost;dbname=formulaire', 'root', '4sgardLOCI');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérifier si tous les champs 
@@ -78,13 +89,8 @@ $sql = 'SELECT * FROM users';
 $req = $pdo->query($sql);
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Inscription</title>
-    <link rel="stylesheet" href="css/basics.css" media="screen" title="no title" charset="utf-8">
-</head>
+
+
 <body>
 <h2>Liste des utilisateurs</h2>
 
@@ -116,17 +122,17 @@ $req = $pdo->query($sql);
 
 <h1>Inscription</h1>
 <form action="" method="post" enctype="multipart/form-data">
-    <div>
+    <div id="divNom">
         <label for="nom">Nom</label>
         <input type="text" name="nom" id="nom" required minlength="2" maxlength="255">
     </div>
 
-    <div>
+    <div id="divPrenom">
         <label for="prenom">Prénom</label>
         <input type="text" name="prenom" id="prenom" required minlength="2" maxlength="255">
     </div>
 
-    <div>
+    <div id="divEmail">
         <label for="email">Adresse email</label>
         <input type="email" name="email" id="email" required minlength="2" maxlength="255">
     </div>
@@ -141,7 +147,10 @@ $req = $pdo->query($sql);
         <textarea name="description" id="description" required minlength="2" maxlength="1000"></textarea>
     </div>
 
-    <button type="submit" name="button">Soumettre</button>
+    <button id="submitButton" type="submit" name="button">Soumettre</button>
 </form>
+
+    <script type="module" src="/hackers-poulette/validation.js" defer></script>
+
 </body>
 </html>
