@@ -79,17 +79,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <form action="" method="post" enctype="multipart/form-data">
     <div class=" flex flex-row space-x-16 ">
-            <div class="mb-4">
+            <div id="divNom" class="mb-4">
                 <label for="nom" class=" font-serif italic block text-lg font-medium  text-gray-800" >Nom:</label>
                 <input type="text" name="nom" id="nom" class="shadow-md w-80 rounded border border-gray-300 p-2" required minlength="2" maxlength="255">
             </div>
 
-            <div class="mb-4">
+            <div id="divPrenom" class="mb-4">
                 <label for="prenom" class="font-serif italic block text-lg font-medium text-gray-800">Prénom:</label>
                 <input type="text" name="prenom" id="prenom" class="shadow-md w-80 rounded border border-gray-300 p-2" required minlength="2" maxlength="255">
             </div>
      </div>
-            <div class="mb-4">
+            <div id="divEmail" class="mb-4">
                 <label for="email" class="font-serif italic block text-lg font-medium  text-gray-800">Adresse email:</label>
                 <input type="email" name="email" id="email" class="shadow-md w-full  rounded border border-gray-300 p-2" required minlength="2" maxlength="255">
             </div>
@@ -104,9 +104,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <textarea name="description" id="description" class="shadow-md w-full rounded border border-gray-300 p-2" required minlength="2" maxlength="1000"></textarea>
             </div>
            <div class="flex justify-center">
-            <button type="submit" name="button" class=" font-serif w-40 bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-500 ">Soumettre</button>
+            <button id="submitButton" type="submit" name="button" class=" font-serif w-40 bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-500 ">Soumettre</button>
 </div>
         </form>
 </div>
+
+<script type="module" src="/hackers-poulette/validation.js" defer></script>
+
 </body>
 </html>

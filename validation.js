@@ -15,6 +15,7 @@ email.addEventListener("change", async (e) =>{
 
     if(document.querySelector("#" + email.id + "Error")){
         document.querySelector("#" + email.id + "Error").remove();
+        email.classList.remove("border-red-400");
     }
 
     if (!email.value.includes('@') || !email.value.includes('.')){
@@ -23,6 +24,7 @@ email.addEventListener("change", async (e) =>{
         let paraContent = document.createTextNode("Mail invalid format");
         para.appendChild(paraContent);
         divEmail.appendChild(para);
+        email.classList.add("border-red-400");
     } else if (await emailableAddress(email.value)){
         console.log("Address OK");
     } else {
@@ -31,6 +33,7 @@ email.addEventListener("change", async (e) =>{
         let paraContent = document.createTextNode("Can't deliver mail to that address");
         para.appendChild(paraContent);
         divEmail.appendChild(para);
+        email.classList.add("border-red-400");
     }
 })
 
@@ -39,6 +42,7 @@ function verifyVarchar(element, div){
 
         if(document.querySelector("#" + element.id + "Error")){
             document.querySelector("#" + element.id + "Error").remove();
+            element.classList.remove("border-red-400");
         }
 
         if (element.value.length < 2 || element.value.length >= 255){
@@ -48,6 +52,7 @@ function verifyVarchar(element, div){
             let paraContent = document.createTextNode("Must be at least 2 characters");
             para.appendChild(paraContent);
             div.appendChild(para);
+            element.classList.add("border-red-400");
            
         }
     })
@@ -68,9 +73,3 @@ async function emailableAddress(mailAddress){
         console.log(error);
     }
 }
-
-document.querySelector("#submitButton").addEventListener('submit', (e) => {
-    if (document.querySelector("#mailError")){
-        alert("Can't send mail to this address");
-    }
-})
