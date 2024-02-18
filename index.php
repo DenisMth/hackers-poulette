@@ -1,19 +1,45 @@
+<?php require("script.php"); ?>
+
+<?php 
+
+if(isset($_POST['submit'])){
+    if(empty($_POST['email'])){
+        $response = "No email given";
+    } else {
+        $subj = "Confirmation email";
+        $mess = "Your mail has been verified ! Welcome to Hackers-poulette !";
+        
+        $response = sendMail($_POST['email'], $subj, $mess);
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <?php
+
+
+
 include_once 'upload.php';
 
-$pdo = new PDO('mysql:host=localhost;dbname=formulaire', 'root', '');
+$pdo = new PDO('mysql:host=localhost;dbname=formulaire', 'root', '4sgardLOCI');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérifier si tous les champs 
+
+
+    
+
     if (isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_FILES['photo_profil'], $_POST['description'])) {
         // Récupérer les valeurs 
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
         $email = $_POST['email'];
         $description = $_POST['description'];
+
         
         // Gérer le fichier envoyé
         $file = $_FILES['photo_profil'];
@@ -124,10 +150,26 @@ if(isset($_POST['captcha'])){
             </div>
             <div class="g-recaptcha" data-sitekey="6Lezy3MpAAAAAD5tPqfalKNkK_yj_TnsLXAA00ga"></div>
            <div class="flex justify-center">
-            <button id="submitButton" type="submit" name="button captcha" class="g-recaptcha font-serif w-40 bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-500 ">Soumettre</button>
-</div>
+            <button id="submitButton" type="submit" name="test button captcha" class="g-recaptcha font-serif w-40 bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-500 ">Soumettre</button>
+
+            <?php
+            
+            if (@$response == "success"){
+                ?>
+                <p class="success">Email sent successfully</p>
+
+                <?php
+            } else {
+                ?>
+                <p class="error"><?php echo @$response; ?></p>
+                <?php
+            }
+
+            ?>
+
+        </div>
         </form>
-</div>
+    </div>
 
 <script>
     window.addEventListener('load', () => {
