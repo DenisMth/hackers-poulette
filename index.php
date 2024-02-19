@@ -2,18 +2,26 @@
 <html lang="en">
 
 <?php
+
+
+
 include_once 'upload.php';
 
 $pdo = new PDO('mysql:host=localhost;dbname=formulaire', 'root', '');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérifier si tous les champs 
+
+
+    
+
     if (isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_FILES['photo_profil'], $_POST['description'])) {
         // Récupérer les valeurs 
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
         $email = $_POST['email'];
         $description = $_POST['description'];
+
         
         // Gérer le fichier envoyé
         $file = $_FILES['photo_profil'];
@@ -93,6 +101,10 @@ if(isset($_POST['captcha'])){
 
 ?>
 
+<header class=" flex flex-row justify-end bg-gray-200 p-8">
+    <a class="mx-4" href="dashboard.php"><p>Dashboard</p></a> <!--<a class="mx-4" href="mail.php"><p>Mail</p></a> -->
+</header>
+
     <div class="container mx-auto p-8 max-w-screen-md bg-gray-100 rounded-3xl shadow-md mt-9 border-solid border-2 border-sky-500">
         <h2 class="font-serif text-5xl font-bold mb-4 text-center text-gray-800 ">Formulaire</h2>
 
@@ -124,10 +136,12 @@ if(isset($_POST['captcha'])){
             </div>
             <div class="g-recaptcha" data-sitekey="6Lezy3MpAAAAAD5tPqfalKNkK_yj_TnsLXAA00ga"></div>
            <div class="flex justify-center">
-            <button id="submitButton" type="submit" name="button captcha" class="g-recaptcha font-serif w-40 bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-500 ">Soumettre</button>
-</div>
+            <button id="submitButton" type="submit" name="test button captcha" class="g-recaptcha font-serif w-40 bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-500 ">Soumettre</button>
+
+
+        </div>
         </form>
-</div>
+    </div>
 
 <script>
     window.addEventListener('load', () => {
