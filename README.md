@@ -49,7 +49,8 @@ VALUES
 Configurez les informations de connexion à la base de données dans les fichiers index.php et dashboard.php.
 Lancez votre serveur web et accédez au formulaire via votre navigateur.
 
-Utilisation:
+## Utilisation
+
 Accédez au formulaire via votre navigateur.
 Remplissez les champs requis (nom, prénom, adresse e-mail, photo de profil, description).
 Cliquez sur le bouton "Soumettre" pour envoyer le formulaire.
@@ -57,10 +58,12 @@ Les données seront validées côté serveur et côté client.
 Si toutes les validations sont réussies, les données seront enregistrées dans la base de données et un message de succès s'affichera.
 Vous pouvez accéder au tableau de bord pour voir les inscriptions enregistrées et effectuer des actions supplémentaires si nécessaire.
 
-Développeurs:
+## Développeurs
+
 [Winona Dehaut](https://github.com/winonadht)
 [Denis Mathieu](https://github.com/DenisMth)
 
 
-lien du site : 
+## Lien du site
+
 https://poulette-club.000webhostapp.com/
