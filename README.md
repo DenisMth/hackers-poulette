@@ -40,8 +40,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users`(nom, prenom, email, photo_profil, description)
 VALUES
-('MATHIEU', 'Denis', 'denismathieu1203@gmail.com', 'https://img.freepik.com/premium-photo/cartoon-drawing-puppy-with-collar-that-says-happy-dog-it_881695-13354.jpg', 'A picture of a cute dog'),
-('DEHAUT', 'Winona', 'test@idk.be', null, 'This is a test')
+('DOE', 'John', 'example@mail.test', 'https://img.freepik.com/premium-photo/cartoon-drawing-puppy-with-collar-that-says-happy-dog-it_881695-13354.jpg', 'A picture of a cute dog'),
+('DOE', 'Jane', 'test@idk.net', null, 'This is a test')
 ;
 
 ```
