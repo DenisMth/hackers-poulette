@@ -5,6 +5,9 @@
 
 
 
+
+
+
 include_once 'upload.php';
 
 $pdo = new PDO('mysql:host=localhost;dbname=formulaire', 'root', '');
@@ -15,12 +18,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     
 
+
+
+    
+
     if (isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_FILES['photo_profil'], $_POST['description'])) {
         // Récupérer les valeurs 
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
         $email = $_POST['email'];
         $description = $_POST['description'];
+
 
         
         // Gérer le fichier envoyé
@@ -140,7 +148,12 @@ if(isset($_POST['captcha'])){
 
 
         </div>
+            <button id="submitButton" type="submit" name="test button captcha" class="g-recaptcha font-serif w-40 bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-500 ">Soumettre</button>
+
+
+        </div>
         </form>
+    </div>
     </div>
 
 <script>
