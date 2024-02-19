@@ -1,6 +1,6 @@
 <?php
 
-$pdo = new PDO('mysql:host=localhost;dbname=formulaire', 'root', '4sgardLOCI');
+$pdo = new PDO('mysql:host=localhost;dbname=formulaire', 'root', '');
 
 
 $sql = 'SELECT * FROM users';

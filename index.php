@@ -1,21 +1,3 @@
-<?php require("script.php"); ?>
-
-<?php 
-
-if(isset($_POST['submit'])){
-    if(empty($_POST['email'])){
-        $response = "No email given";
-    } else {
-        $subj = "Confirmation email";
-        $mess = "Your mail has been verified ! Welcome to Hackers-poulette !";
-        
-        $response = sendMail($_POST['email'], $subj, $mess);
-    }
-}
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +7,7 @@ if(isset($_POST['submit'])){
 
 include_once 'upload.php';
 
-$pdo = new PDO('mysql:host=localhost;dbname=formulaire', 'root', '4sgardLOCI');
+$pdo = new PDO('mysql:host=localhost;dbname=formulaire', 'root', '');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérifier si tous les champs 
@@ -119,6 +101,10 @@ if(isset($_POST['captcha'])){
 
 ?>
 
+<header class=" flex flex-row justify-end bg-gray-200 p-8">
+    <a class="mx-4" href="dashboard.php"><p>Dashboard</p><!-- </a><a class="mx-4" href="mail.php"><p>Mail</p></a> -->
+</header>
+
     <div class="container mx-auto p-8 max-w-screen-md bg-gray-100 rounded-3xl shadow-md mt-9 border-solid border-2 border-sky-500">
         <h2 class="font-serif text-5xl font-bold mb-4 text-center text-gray-800 ">Formulaire</h2>
 
@@ -152,20 +138,6 @@ if(isset($_POST['captcha'])){
            <div class="flex justify-center">
             <button id="submitButton" type="submit" name="test button captcha" class="g-recaptcha font-serif w-40 bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-500 ">Soumettre</button>
 
-            <?php
-            
-            if (@$response == "success"){
-                ?>
-                <p class="success">Email sent successfully</p>
-
-                <?php
-            } else {
-                ?>
-                <p class="error"><?php echo @$response; ?></p>
-                <?php
-            }
-
-            ?>
 
         </div>
         </form>
