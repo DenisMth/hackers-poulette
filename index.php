@@ -38,23 +38,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $fileSize = $file['size'];
         $fileError = $file['error'];
 
+        if (empty($_POST['nom'])) {
+            echo '<script>alert("champ obligatoire.");</script>';
+            exit;
+        } elseif (strlen($_POST['nom']) < 2 || strlen($_POST['nom']) > 255) {
+            echo '<script>alert("Le nom doit contenir entre 2 et 255 caractères.");</script>';
+            exit;
+        } else {
+            $nom = $_POST['nom'];
+        }
+        if (empty($_POST['prenom'])) {
+            echo '<script>alert("champ obligatoire.");</script>';
+            exit;
+        } elseif (strlen($_POST['prenom']) < 2 || strlen($_POST['prenom']) > 255) {
+            echo '<script>alert("Le prénom doit contenir entre 2 et 255 caractères.");</script>';
+            exit;
+        } else {
+            $prenom = $_POST['prenom'];
+        }
+
+        if (empty($_POST['email'])) {
+            echo '<script>alert("Le champ email est requis.");</script>';
+            exit;
+        } elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            echo '<script>alert("email invalide.");</script>';
+            exit;
+        } else {
+            $email = $_POST['email'];
+        }
+
+        if (empty($_POST['description'])) {
+            echo '<script>alert("champ obligatoire");</script>';
+            exit;
+        } elseif (strlen($_POST['description']) < 2 || strlen($_POST['description']) > 1000) {
+            echo '<script>alert("La description doit contenir entre 2 et 1000 caractères.");</script>';
+            exit;
+        } else {
+            $description = $_POST['description'];
+        }
+        
+
         // Vérifier si aucun problème n'est survenu 
         if ($fileError === 0) {
             // Vérifier si le fichier est une image
             $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
             $allowedExtensions = array('jpg', 'jpeg', 'png', 'gif');
             if (in_array($fileExt, $allowedExtensions)) {
-                // Vérifier la taille du fichier
+                // Vérifier la taille du fichier 
                 if ($fileSize <= 2 * 1024 * 1024) {
-                    // emplacement de stockage
+                    //  emplacement de stockage
                     $fileDestination = 'uploads/' . $fileName;
                     move_uploaded_file($fileTmpName, $fileDestination);
 
-                    //  requête 
+                    //requête 
                     $sql = "INSERT INTO users (nom, prenom, email, photo_profil, description) VALUES (:nom, :prenom, :email, :photo_profil, :description)";
                     $stmt = $pdo->prepare($sql);
 
-                    // Exécuter requête
+                    // la requête
                     $stmt->execute(array(
                         ':nom' => $nom,
                         ':prenom' => $prenom,
@@ -77,6 +117,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo '<script>alert("Une erreur s\'est produite lors du téléchargement du fichier.");</script>';
         }
+        
+
     } else {
         echo '<script>alert("Veuillez remplir tous les champs du formulaire.");</script>';
     }
